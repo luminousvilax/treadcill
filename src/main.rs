@@ -10,6 +10,13 @@ impl Work {
     }
 }
 
+impl Work {
+    fn show(&self){
+        println!("------------------");
+        println!("Title: {}\nContent: {}", self.title, self.content);
+    }
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     let arg_len = args.len();
@@ -30,8 +37,7 @@ fn main() {
     }
     println!("Todo list:");
     for work in &works {
-        println!("------------------");
-        println!("Title: {}\nContent: {}", work.title, work.content);
+        work.show();
     }
 }
 
