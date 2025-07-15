@@ -28,12 +28,23 @@ fn main() {
     }
     // init
     let mut works: Vec<Work> = vec![];
-    if arg_len >= 3{
-        works.push(Work::new(args[1].clone(), args[2].clone()));
-    } else if args[1].clone() == "create" {
-        works = interactive();
-    } else{
-        works.push(Work::new(String::new(), args[1].clone()));
+    match args[1].clone().as_str() {
+        "create" => {
+            works = interactive();
+        }
+        "list" => {
+            println!("Todo list:");
+            for work in &works {
+                work.show();
+            }
+        }
+        _ => {
+            if arg_len >= 3{
+                works.push(Work::new(args[1].clone(), args[2].clone()));
+            } else{
+                works.push(Work::new(String::new(), args[1].clone()));
+            }
+        }
     }
     println!("Todo list:");
     for work in &works {
