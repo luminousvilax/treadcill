@@ -2,6 +2,7 @@ mod todo;
 use crate::todo::core::Work;
 use crate::todo::create::interactive;
 use crate::todo::list::todo_list;
+use crate::todo::storage::{read_works, save_works};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -11,10 +12,12 @@ fn main() {
         return;
     }
     // init
-    let mut works: Vec<Work> = vec![];
+    let file_path = "data/todo.json";
+    let mut works: Vec<Work> = read_works(file_path);
     match args[1].clone().as_str() {
         "create" => {
-            works = interactive();
+            let mut new_works = interactive();
+            works.append(&mut new_works);
         }
         "list" => {
             todo_list(&works);
@@ -27,5 +30,5 @@ fn main() {
             }
         }
     }
-    todo_list(&works);
+    save_works(file_path, &works);
 }
