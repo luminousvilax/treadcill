@@ -13,7 +13,6 @@ impl Work {
     }
 
     pub fn show(&self) {
-        println!("------------------");
         println!("Title: {}\nContent: {}", self.title, self.content);
     }
 }
@@ -34,6 +33,10 @@ pub enum TodoCommand {
     },
     /// List all the todo works
     List,
-    /// Clear all works
-    Clear
+    /// Clear works, if do not supply number, clear all of them
+    Clear {
+        /// select which work to clear
+        #[arg(short, long)]
+        number: Option<usize>
+    }
 }

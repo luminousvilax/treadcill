@@ -31,8 +31,17 @@ fn main() {
         TodoCommand::List => {
             todo::list::todo_list(&works);
         }
-        TodoCommand::Clear => {
-            works.clear();
+        TodoCommand::Clear {
+            number
+        } => {
+            let num = number.unwrap_or_default();
+            if num == 0 {
+                works.clear();
+            } else if num <= works.len() {
+                let cleared = works.remove(num - 1);
+                println!("Cleared!");
+                cleared.show();
+            }
         }
     }
     save_works(file_path, &works);

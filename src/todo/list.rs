@@ -6,7 +6,10 @@ pub fn todo_list(works: &Vec<Work>) {
         return;
     }
     println!("Todo list:");
-    for work in works {
+    for (index, work) in works.iter().enumerate() {
+        println!("No.{}: ", index + 1);
+        println!("------------------");
         work.show();
+        println!("------------------");
     }
 }
