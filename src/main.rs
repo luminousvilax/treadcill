@@ -35,13 +35,7 @@ fn main() {
             number
         } => {
             let num = number.unwrap_or_default();
-            if num == 0 {
-                works.clear();
-            } else if num <= works.len() {
-                let cleared = works.remove(num - 1);
-                println!("Cleared!");
-                cleared.show();
-            }
+            todo::clear::clear_todo(&mut works, num);
         }
     }
     save_works(file_path, &works);
