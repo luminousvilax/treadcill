@@ -28,15 +28,14 @@ fn main() {
                 works.push(Work::new(title.unwrap_or_default(), content));
             }
         }
-        TodoCommand::List => {
-            todo::list::todo_list(&works);
+        TodoCommand::List { title, content } => {
+            todo::list::todo_list(&works, title, content);
+            return;
         }
-        TodoCommand::Clear {
-            number
-        } => {
+        TodoCommand::Clear { number } => {
             let num = number.unwrap_or_default();
             todo::clear::clear_todo(&mut works, num);
         }
     }
-    save_works(file_path, &works);
+    save_works(file_path, &works).expect("save todos error");
 }

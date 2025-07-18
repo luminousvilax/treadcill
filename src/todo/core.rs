@@ -32,7 +32,14 @@ pub enum TodoCommand {
         content: String,
     },
     /// List all the todo works
-    List,
+    List {
+        /// Text of title contains
+        #[arg(short, long)]
+        title: Option<String>,
+        /// Text of content contains
+        #[arg(short, long)]
+        content: Option<String>,
+    },
     /// Clear works, if do not supply number, clear all of them
     Clear {
         /// select which work to clear

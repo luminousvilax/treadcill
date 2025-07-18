@@ -18,7 +18,8 @@ pub fn read_works(file_path: &str) -> Vec<Work> {
     return works;
 }
 
-pub fn save_works(file_path: &str, works: &Vec<Work>) {
-    let data = serde_json::to_string(works).unwrap();
-    fs::write(file_path, data).unwrap();
+pub fn save_works(file_path: &str, works: &Vec<Work>) -> Result<(), String> {
+    let data = serde_json::to_string(works).map_err(|e| e.to_string())?;
+    fs::write(file_path, data).map_err(|e| e.to_string())?;
+    Ok(())
 }
