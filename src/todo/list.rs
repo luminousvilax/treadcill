@@ -45,7 +45,7 @@ pub fn todo_list(works: &Vec<Work>, title: Option<String>, content: Option<Strin
     }
 }
 
-fn work_detail(work: &Work, index: usize) {
+pub fn work_detail(work: &Work, index: usize) {
     println!("No.{}: ", index + 1);
     println!("------------------");
     work.show();

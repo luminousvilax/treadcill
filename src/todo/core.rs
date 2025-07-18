@@ -40,6 +40,18 @@ pub enum TodoCommand {
         #[arg(short, long)]
         content: Option<String>,
     },
+    /// Edit a todo work
+    Edit {
+        /// The index of the work to edit
+        #[arg(short, long)]
+        index: usize,
+        /// New title for the work (optional)
+        #[arg(short, long)]
+        title: Option<String>,
+        /// New content for the work (optional)
+        #[arg(short, long)]
+        content: Option<String>,
+    },
     /// Clear works, if do not supply number, clear all of them
     Clear {
         /// select which work to clear

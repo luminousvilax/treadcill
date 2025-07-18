@@ -32,6 +32,11 @@ fn main() {
             todo::list::todo_list(&works, title, content);
             return;
         }
+        TodoCommand::Edit { index, title, content } => {
+            if let Err(e) = todo::edit::edit_work(&mut works, index-1, title, content) {
+                eprintln!("Error editing work: {}", e);
+            }
+        }
         TodoCommand::Clear { number } => {
             let num = number.unwrap_or_default();
             todo::clear::clear_todo(&mut works, num);

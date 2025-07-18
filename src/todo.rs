@@ -3,3 +3,4 @@ pub mod create;
 pub mod list;
 pub mod storage;
 pub mod clear;
+pub mod edit;
