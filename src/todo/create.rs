@@ -1,5 +1,5 @@
-use std::io::{self, Write};
 use super::core::Work;
+use std::io::{self, Write};
 
 pub fn interactive() -> Vec<Work> {
     // init
